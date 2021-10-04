@@ -1,0 +1,15 @@
+@import "../scss/variables";
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(100px, 10%) 1fr;
+  height: 100vh;
+}
+
+.main-content {
+  background-color: $bg-color;
+}
+
+.sidebar {
+  background-color: $nav-color;
+}
