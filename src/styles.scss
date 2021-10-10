@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-/* MAIN BG: #141625 */
-/* NAV BG: #1e2139 */
+@import "./scss/variables";
 
 *,
 *::before,
@@ -8,4 +6,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: $text-clr;
 }
