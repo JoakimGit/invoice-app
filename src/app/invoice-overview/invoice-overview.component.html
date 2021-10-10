@@ -1,1 +1,21 @@
-<p>invoice-overview works!</p>
+<div>
+  <div>
+    <h3>Invoices</h3>
+    <p class="invoiceAmount">7 invoices</p>
+  </div>
+
+  <div>
+    <div class="filter">
+      <select>
+        <option value="all" selected #filterText>Filter</option>
+        <option value="pending">Pending</option>
+        <option value="paid">Paid</option>
+        <option value="draft">Draft</option>
+      </select>
+    </div>
+
+    <div>
+      <button #addNewText><i class="fas fa-plus-circle"></i>New</button>
+    </div>
+  </div>
+</div>

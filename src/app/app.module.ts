@@ -7,6 +7,7 @@ import { InvoiceOverviewComponent } from './invoice-overview/invoice-overview.co
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddEditInvoiceComponent } from './add-edit-invoice/add-edit-invoice.component';
 import { InvoiceDetailsComponent } from './invoice-details/invoice-details.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InvoiceDetailsComponent } from './invoice-details/invoice-details.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
