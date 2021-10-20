@@ -1,1 +1,12 @@
-<p>sidebar works!</p>
+<div class="side-bar">
+  <div class="logo">
+    <div class="icon-container">
+      <i class="fa-solid fa-file-invoice-dollar fa-3x"></i>
+    </div>
+    <div class="inner-logo"></div>
+  </div>
+
+  <div class="toggle-theme" (click)="toggleTheme()">
+    <i class="fa-solid fa-{{theme}} fa-xl"></i>
+  </div>
+</div>

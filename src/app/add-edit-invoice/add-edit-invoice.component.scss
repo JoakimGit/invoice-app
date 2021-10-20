@@ -1,0 +1,155 @@
+@import "../../scss/variables";
+
+.invoice-slide-in {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-height: 100%;
+  padding: 1.25rem;
+  background: var(--bg-color);
+  overflow-y: auto;
+  scrollbar-width: thin;  
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    &-track {
+      background-color: var(--bg-color);
+    }
+    &-thumb {
+      background-color: var(--invoice-color);
+    }
+  }
+
+  @media (min-width: 45em) {
+    left: 100px;
+    width: max(425px, 40%);
+    padding: 2.5rem;
+  }
+}
+
+.filter-container {
+  padding-right: 1rem;
+  background-color: var(--invoice-color);
+}
+
+.filter {
+  background: url("../../assets/icons/icon-arrow-down.svg") no-repeat right;
+	font-family: inherit;
+  color: inherit;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-section-header {
+  color: var(--accent-500);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+
+  @media (min-width: 45em) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.country {
+  grid-column: span 2;
+
+  @media (min-width: 45em) {
+    grid-column: auto;
+  }
+}
+
+.dueDate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.add-item {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-color: var(--invoice-color);
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.item-list-header {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-grey-clr);
+}
+
+.list-item {  
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--invoice-color);
+  border-radius: 4px;
+  color: var(--text-clr);
+}
+
+.item-table {
+  border-collapse: separate;
+  border-spacing: 0.75rem;
+  margin: -0.75rem;
+  th {
+    text-align: left;
+    color: var(--text-grey-clr);
+  }
+}
+
+.qty-hdr {
+  width: 4ch;
+  @media (min-width: 45em) {
+    width: 5ch;
+  }
+}
+
+.price-hdr {
+  width: 8ch;
+  @media (min-width: 45em) {
+    width: 10ch;
+  }
+}
+
+.total {
+  position: relative;
+  bottom: 2px;
+  background-color: inherit;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+.form-btns {
+  margin-top: 1.5rem;
+  @media (min-width: 45em) {
+    display: flex;
+    justify-content: space-between;
+    & .btn + .btn {
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  @media (min-width: 45em) {
+    margin-top: 0;
+  }
+}

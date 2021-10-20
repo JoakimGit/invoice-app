@@ -1,1 +1,86 @@
-<p>invoice-details works!</p>
+<div *ngIf="showInvoiceForm" @ngIfAnimation class="slide-in-container">
+  <add-edit-invoice [selectedInvoice]="selectedInvoice" (closeForm)="closeForm($event)"></add-edit-invoice>
+</div>
+
+<div *ngIf="selectedInvoice" class="details-container">
+  <a routerLink="/">
+    <div class="back-btn">
+      <img class="back-icon" src="../../assets/icons/icon-arrow-left.svg" alt="caret" />Go Back
+    </div>
+  </a>
+
+  <div class="details-header">
+    <div class="status-header">
+      <p class="statusText grey-txt">Status</p>
+      <p [ngClass]="['status-btn', (selectedInvoice.status).toLowerCase()]">{{ selectedInvoice.status }}</p>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-black" (click)="editInvoice()">Edit</button>
+      <button class="btn btn-red" (click)="deleteInvoice()">Delete</button>
+      <button class="btn btn-purple" (click)="payInvoice()">Mark as Paid</button>
+    </div>
+  </div>
+
+  <div class="invoice-details">
+    <section class="top-section grey-txt">
+      <div>
+        <p class="invoice-id">{{ selectedInvoice.id }}</p>
+        <p class="invoice-description">{{ selectedInvoice.productDescription }}</p>
+      </div>
+      <div>
+        <p>{{ selectedInvoice.billerStreetAddress }}</p>
+        <p>{{ selectedInvoice.billerCity }}</p>
+        <p>{{ selectedInvoice.billerPostalCode }}</p>
+        <p>{{ selectedInvoice.billerCountry }}</p>
+      </div>
+    </section>
+
+    <section class="mid-section">
+      <div class="dates grey-txt">
+        <div class="invoice-date">
+          <p>Invoice Date</p>
+          <p class="date">{{ selectedInvoice.invoiceDate | date: "d MMM y"  }}</p>
+        </div>
+        <div class="due-date">
+          <p>Payment Due</p>
+          <p class="date">{{ selectedInvoice.dueDate | date: "d MMM y"  }}</p>
+        </div>
+      </div>
+
+      <div class="client-info grey-txt">
+        <p class="info-text">Bill To</p>
+        <p class="client-name">{{ selectedInvoice.clientName }}</p>
+        <p class="client-address">{{ selectedInvoice.clientStreetAddress }}</p>
+        <p class="client-city">{{ selectedInvoice.clientCity }}</p>
+        <p class="client-postal">{{ selectedInvoice.clientPostalCode }}</p>
+        <p class="client-country">{{ selectedInvoice.clientCountry }}</p>
+      </div>
+
+      <div class="client-email">
+        <p class="email-text grey-txt">Sent To</p>
+        <p class="email">{{ selectedInvoice.clientEmail }}</p>
+      </div>
+    </section>
+    
+    <section class="item-section">
+      <div class="items">
+        <div class="item-row" *ngFor="let item of selectedInvoice.items">
+          <div>
+            <p>{{ item.name }}</p>
+            <p class="grey-txt">{{ item.qty }} x $ {{ item.price }}</p>
+          </div>
+          <div>
+            <p class="item-total">$ {{ (item.total).toFixed(2) }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="total">
+        <span class="total-text">Grand Total</span>
+        <span class="total-amount">$ {{ (selectedInvoice.total).toFixed(2) }}</span>
+      </div>
+    </section>
+
+  </div>
+</div>

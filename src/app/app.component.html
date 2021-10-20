@@ -1,6 +1,6 @@
-<div class="container">
+<div [ngClass]="['container', theme]">
   <div class="sidebar">
-    <sidebar></sidebar>
+    <sidebar (toggleThemeClicked)="toggleTheme()"></sidebar>
   </div>
   <div class="main-content">
     <router-outlet></router-outlet>

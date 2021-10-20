@@ -1,5 +1,10 @@
-$bg-color: hsl(233, 30%, 11%);
-$nav-color: hsl(233, 31%, 17%);
-$invoice-color: hsl(233, 31%, 17%);
-$btn-new: hsl(233, 100%, 79%);
-$text-clr: rgb(255, 255, 255);
+:root {
+  --bg-color: hsl(233, 30%, 11%);
+  --nav-color: hsl(233, 31%, 17%);
+  --invoice-color: hsl(233, 31%, 17%);
+  --accent-800: hsl(252, 93%, 67%);
+  --accent-500: hsl(252, 100%, 74%);
+  --text-clr: rgb(255, 255, 255);
+  --text-grey-clr: hsl(237, 16%, 75%);
+  --grand-total-clr: hsl(0, 5%, 8%);
+}

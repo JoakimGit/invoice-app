@@ -1,21 +1,46 @@
-<div>
-  <div>
-    <h3>Invoices</h3>
-    <p class="invoiceAmount">7 invoices</p>
-  </div>
+<div *ngIf="showInvoiceForm" @ngIfAnimation class="slide-in-container">
+  <add-edit-invoice (closeForm)="closeForm($event)"></add-edit-invoice>
+</div>
 
-  <div>
-    <div class="filter">
-      <select>
-        <option value="all" selected #filterText>Filter</option>
-        <option value="pending">Pending</option>
-        <option value="paid">Paid</option>
-        <option value="draft">Draft</option>
-      </select>
-    </div>
-
+<div *ngIf="filteredInvoices.length" class="invoice-overview">
+  <div class="invoice-list-header">
     <div>
-      <button #addNewText><i class="fas fa-plus-circle"></i>New</button>
+      <h1>Invoices</h1>
+      <div>{{ isMobile ? filteredInvoices.length + ' invoices' : 'There are ' + filteredInvoices.length + ' total invoices' }}</div>
     </div>
+  
+    <div class="header-right">
+      <div>
+        <select class="filter" (change)="onChangeFilter($event)">
+          <option value="All" selected>{{ isMobile ? 'Filter' : 'Filter by status' }}</option>
+          <option value="Pending">Pending</option>
+          <option value="Paid">Paid</option>
+          <option value="Draft">Draft</option>
+        </select>
+      </div>
+  
+      <div class="new-invoice">
+        <button  *ngIf="isMobile" class="btn btn-purple btn-icon" (click)="addInvoice()"><i class="fas fa-plus-circle"></i>New</button>
+        <button *ngIf="!isMobile" class="btn btn-purple btn-icon" (click)="addInvoice()"><i class="fas fa-plus-circle"></i>New Invoice</button>
+      </div>    
+    </div>
+  </div>
+  
+  <div *ngFor="let invoice of filteredInvoices; trackBy: trackByFn">
+          
+    <a [routerLink]="['/invoices', invoice.id]">
+      <div class="invoice-row" >
+        <span class="invoice-id">{{ (invoice.id).slice(0, 10) }}</span>
+        <span class="due-date">Due {{ invoice.dueDate | date: "d MMM y" }}</span>
+        <span class="invoice-client">{{ invoice.clientName }}</span>
+        <span class="price">$ {{ (invoice.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</span>
+        <span [ngClass]="['status-btn', (invoice.status).toLowerCase()]">{{ invoice.status }}</span>
+        <div class="expand-caret">
+          <img src="../../assets/icons/icon-arrow-right.svg" alt="caret" />
+        </div>
+      </div>
+    </a>
+    
   </div>
 </div>
+

@@ -1,1 +1,124 @@
-<p>add-edit-invoice works!</p>
+<div class="invoice-slide-in">
+  <h3 class="form-header">{{ title }}</h3>
+
+  <form id="invoiceForm" [formGroup]="invoiceForm" (ngSubmit)="onSubmit($event.submitter.id)">
+
+    <div class="bill-sender">
+      <p class="form-section-header">Bill From</p>
+      <div class="form-group">
+        <label for="billerStreetAddress">Street Address</label>
+        <input class="form-input" type="text" name="billerStreetAddress" formControlName="billerStreetAddress" />
+      </div>
+      <div class="form-group location">
+        <div class="city">
+          <label for="billerCity">City</label>
+          <input class="form-input" type="text" name="billerCity" formControlName="billerCity"/>
+        </div>
+        <div class="form-group postal">
+          <label for="billerZipCode">Post Code</label>
+          <input class="form-input" type="text" name="billerPostalCode" formControlName="billerPostalCode"/>
+        </div>
+        <div class="form-group country">
+          <label for="billerCountry">Country</label>
+          <input class="form-input" type="text" name="billerCountry" formControlName="billerCountry"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="bill-receiver">
+      <p class="form-section-header">Bill To</p>
+      <div class="form-group">
+        <label for="clientName">Client's Name</label>
+        <input class="form-input" type="text" name="clientName" formControlName="clientName"/>
+      </div>
+      <div class="form-group">
+        <label for="clientEmail">Client's Email</label>
+        <input class="form-input" type="text" name="clientEmail" formControlName="clientEmail"/>
+      </div>
+      <div class="form-group">
+        <label for="clientStreetAddress">Street Address</label>
+        <input class="form-input" type="text" name="clientStreetAddress" formControlName="clientStreetAddress"/>
+      </div>
+      <div class="form-group location">
+        <div class="city">
+          <label for="clientCity">City</label>
+          <input class="form-input" type="text" name="clientCity" formControlName="clientCity"/>
+        </div>
+        <div class="form-group postal">
+          <label for="clientZipCode">Post Code</label>
+          <input class="form-input" type="text" name="clientPostalCode" formControlName="clientPostalCode"/>
+        </div>
+        <div class="form-group country">
+          <label for="clientCountry">Country</label>
+          <input class="form-input" type="text" name="clientCountry" formControlName="clientCountry"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="dueDate">
+      <div class="form-group">
+        <label for="invoiceDate">Invoice Date</label>
+        <input class="form-input" type="text" readonly [value]="invoiceForm.controls.invoiceDate.value | date: 'd MMM y'"/>
+      </div>
+      <div class="form-group">
+        <label for="paymentTerms">Payment Terms</label>
+        <div class="filter-container">
+          <select class="form-input filter" type="text" name="paymentTerms" formControlName="paymentTerms">
+            <option [ngValue]="null" hidden>Choose terms</option>
+            <option value="30">Net 30 Days</option>
+            <option value="60">Net 60 Days</option>
+          </select>
+        </div>        
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productDescription">Product Description</label>
+      <input class="form-input" type="text" name="productDescription" formControlName="productDescription"/>
+    </div>
+  </form>
+
+  <div class="item-list">
+    <h2 class="item-list-header">Item List</h2>      
+    <form [formGroup]="itemsForm" (ngSubmit)="addItem()">
+      <table class="item-table">
+        <tr>
+          <th class="item-name-hdr">Item Name</th>
+          <th class="qty-hdr">Qty.</th>
+          <th class="price-hdr">Price</th>
+          <th class="total-hdr">Total</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let item of invoiceItems; trackBy: trackByFn">
+          <td><input class="form-input" type="text" value="{{item.name}}" readonly/></td>
+          <td><input class="form-input" type="text" value="{{item.qty}}" readonly/></td>
+          <td><input class="form-input" type="text" value="{{item.price}}" readonly/></td>
+          <td class="total">{{ (item.total).toFixed(2) }}</td>
+          <td><img class="trash" src="../../assets/icons/icon-delete.svg" alt="trashcan" (click)="deleteItem(item.id)"/></td>
+        </tr>
+        <tr>
+          <td class="item-name"><input class="form-input" type="text" name="name" formControlName="name"/></td>
+          <td class="qty"><input class="form-input" type="text" name="qty" formControlName="qty"></td>
+          <td class="price"><input class="form-input" type="text" name="price" formControlName="price"/></td>
+          <td class="total" colspan="2">{{ itemsForm.value.price ? (itemsForm.value.qty * itemsForm.value.price).toFixed(1) : '' }}</td>
+        </tr>
+      </table>
+  
+      <div>
+        <button type="submit" class="add-item add-item-btn"><img src="../../assets/icons/icon-plus.svg" alt="plus"/>
+        Add New Item
+        </button>
+      </div>
+    </form>    
+  </div>
+
+  <div class="form-btns">
+    <div>
+      <button type="button" class="btn btn-red" (click)="closeInvoiceForm()">Cancel</button>
+    </div>
+    <div class="btn-group">
+      <button id="draft" type="submit" form="invoiceForm" class="btn btn-dark-yellow">Save Draft</button>
+      <button id="save" type="submit" form="invoiceForm" class="btn btn-purple">{{ isAddMode ? 'Create' : 'Edit' }} Invoice</button>
+    </div>
+  </div>
+</div>

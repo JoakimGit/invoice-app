@@ -1,35 +1,59 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ngIfAnimation } from '../_animations/ng-if-animation.animation';
+import { Invoice } from '../_models/invoice';
+import { InvoiceService } from '../_services/invoice.service';
 
 @Component({
   selector: 'app-invoice-overview',
   templateUrl: './invoice-overview.component.html',
-  styleUrls: ['./invoice-overview.component.scss']
+  styleUrls: ['./invoice-overview.component.scss'],
+  animations: [ngIfAnimation],
 })
 export class InvoiceOverviewComponent implements OnInit {
-  @ViewChild('invoiceAmount') invoiceAmount!: ElementRef<HTMLParagraphElement>;
-  @ViewChild('filterText') filterText!: ElementRef;
-  @ViewChild('addNewText') addNewText!: ElementRef;
+  private invoices: Invoice[] = [];
+  public filteredInvoices: Invoice[] = [];
+  public isMobile: boolean = true;
+  public showInvoiceForm: boolean = false;
+  private mediaQuery = window.matchMedia('(min-width: 45em)');
 
-  constructor(public breakpointObserver: BreakpointObserver) { }
-
-  ngOnInit(): void {
-    this.breakpointObserver
-      .observe(['(min-width: 40 em)'])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          console.log("Matched");
-        } 
-      });
-    /* const mediaQuery = window.matchMedia('(min-width: 45em)');
-    mediaQuery.addEventListener("change", this.handleMediaQuery);
-    this.handleMediaQuery(mediaQuery); */
+  constructor(private invoiceService: InvoiceService) {
+    this.mediaQuery.addEventListener("change", (e) => {
+      e.matches ? this.isMobile = false : this.isMobile = true;
+    });
+    if (this.mediaQuery.matches) this.isMobile = false;
   }
 
-  /* private handleMediaQuery(e: any): void {
-    if(e.matches) {
-      console.log(this.renderer.selectRootElement(".invoiceAmount"));
+  ngOnInit(): void {
+    this.getInvoices();
+  }
+
+  public addInvoice() {
+    this.showInvoiceForm = true;
+  }
+
+  public closeForm(invoice: Invoice) {    
+    if (invoice) this.getInvoices();
+    this.showInvoiceForm = false;
+  }
+
+  public trackByFn(index: any, item: any) {
+    return item.id;
+  }
+
+  private getInvoices() {
+    this.invoiceService.getInvoices().subscribe(resp => {
+      this.invoices = resp;
+      this.filteredInvoices = Object.assign([], this.invoices);
+    });
+  }
+
+  public onChangeFilter(event: Event) {
+    const status = (event.target as HTMLSelectElement).value;
+    if (status === 'All') {
+      this.filteredInvoices = this.invoices;
+    } else {
+      this.filteredInvoices = this.invoices.filter(invoice => invoice.status === status);
     }
-  } */ 
+  }
 
 }

@@ -1,0 +1,149 @@
+@import "../../scss/variables";
+
+.details-container {
+  @media (min-width: 45em) {
+    padding: 2rem;
+    min-width: 550px;
+    max-width: 750px;
+    margin: 0 auto;    
+  }
+}
+
+.details-header {
+  margin-bottom: 1rem;  
+  border-radius: 5px;
+
+  @media (min-width: 45em) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--invoice-color);
+  }
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--invoice-color);
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  padding: 1.5rem 0.5rem;
+  background: var(--invoice-color);
+  border-radius: 5px;
+  @media (min-width: 45em) {
+    padding: 1.5rem;
+    margin-top: 0;
+    button + button {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.invoice-details {
+  padding: 1rem;
+  background-color: var(--invoice-color);
+  border-radius: 5px;
+  @media (min-width: 45em) {
+    padding: 2rem;  
+  }
+}
+
+.items {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-radius: 5px 5px 0 0;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--grand-total-clr);
+  border-radius: 0 0 5px 5px;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  + .item-row {
+    margin-top: 1rem;
+  }
+}
+
+.item-total {
+  font-weight: 600;
+}
+
+.total-text {
+  color: hsl(237, 16%, 75%);
+}
+
+.total-amount {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.back-btn {
+  margin-bottom: 1rem;
+}
+
+.back-icon {
+  margin-right: 1rem;
+}
+
+.date {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-clr);
+}
+
+.client-name {
+  margin-top: 0.5rem; 
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-clr);
+}
+
+.invoice-id {
+  font-size: 1.125rem;
+  color: var(--text-clr);
+}
+
+.invoice-date {
+  margin-bottom: 1rem;
+}
+
+.client-email {
+  @media (max-width: 45em) {
+    margin-top: 1rem; 
+  }
+}
+
+.email {
+  margin-top: 0.5rem; 
+  font-weight: 600;
+}
+
+section {
+  margin-bottom: 1.5rem;
+}
+
+.mid-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 45em) {
+    grid-template-columns: 30% 30% 1fr;    
+  }
+}
