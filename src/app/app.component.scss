@@ -15,6 +15,10 @@
   background-color: var(--nav-color);
 }
 
+.container.light .sidebar {
+  border-radius: 0 20px 0 0;
+}
+
 .main-content {
   min-height: 100%;
   padding: 1.5rem;

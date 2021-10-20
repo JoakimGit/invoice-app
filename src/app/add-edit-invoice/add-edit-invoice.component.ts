@@ -34,7 +34,7 @@ export class AddEditInvoiceComponent implements OnInit {
     else {
       this.selectedInvoice = new Invoice();
     }
-    this.isAddMode ? this.title = "Edit Invoice" : this.title = "New Invoice";
+    this.isAddMode ? this.title = this.title = "New Invoice" : "Edit Invoice";
 
     this.createFormGroups();
   }
@@ -77,14 +77,16 @@ export class AddEditInvoiceComponent implements OnInit {
       this.selectedInvoice.items = this.invoiceItems;
       this.selectedInvoice.dueDate = this.addDaysToDate(this.selectedInvoice.invoiceDate, Number(this.invoiceForm.value.paymentTerms));
       this.selectedInvoice.total = this.invoiceItems.reduce((total, item) => total + item.total, 0);
-      submitType === 'save' ? this.selectedInvoice.status = "Pending" : this.selectedInvoice.status = "Draft";
-      console.log(this.selectedInvoice);
 
       if (this.isAddMode) {
+        submitType === 'save' ? this.selectedInvoice.status = "Pending" : this.selectedInvoice.status = "Draft";
         this.invoiceService.createInvoice(this.selectedInvoice).subscribe(resp => {
           this.closeForm.emit(resp);
         });
       } else {
+        if (this.selectedInvoice.status !== "Paid") {
+          submitType === 'save' ? this.selectedInvoice.status = "Pending" : this.selectedInvoice.status = "Draft";
+        }
         this.invoiceService.updateInvoice(this.selectedInvoice).subscribe(resp => {          
           this.closeForm.emit(resp);
         });
@@ -93,10 +95,7 @@ export class AddEditInvoiceComponent implements OnInit {
   }
 
   private addDaysToDate(date: Date, days: number) {
-    console.log("DATE:", date);
-    console.log("DAYS:", days);
-    const futureDate = new Date(date);
-    
+    const futureDate = new Date(date);    
     futureDate.setDate(futureDate.getDate() + days);
     return futureDate;
   }

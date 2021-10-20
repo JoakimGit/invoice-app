@@ -24,7 +24,6 @@ export class InvoiceDetailsComponent implements OnInit {
     const id: string = this.route.snapshot.params['id'];
     if (id) {
       this.invoiceService.getInvoice(id).subscribe(resp => {
-        console.log(resp);
         this.selectedInvoice = resp;
       });
     }
