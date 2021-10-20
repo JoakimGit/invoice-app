@@ -17,10 +17,10 @@ Users should be able to:
 
 ### Screenshot
 
-![search-light](./assets/design/overview-web-dark.PNG)
-![search-light](./assets/design/invoice-slidein-web-dark.PNG)
-![search-light](./assets/design/details-web-light.PNG)
-![search-light](./assets/design/invoice-slidein-mobile-light.PNG)
+![search-light](./src/assets/design/overview-web-dark.PNG)
+![search-light](./src/assets/design/invoice-slidein-web-dark.PNG)
+![search-light](./src/assets/design/details-web-light.PNG)
+![search-light](./src/assets/design/invoice-slidein-mobile-light.PNG)
 
 ### Links
 
