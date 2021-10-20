@@ -18,7 +18,7 @@
     <div class="buttons">
       <button class="btn btn-black" (click)="editInvoice()">Edit</button>
       <button class="btn btn-red" (click)="deleteInvoice()">Delete</button>
-      <button class="btn btn-purple" (click)="payInvoice()">Mark as Paid</button>
+      <button class="btn btn-purple" (click)="payInvoice()" disabled="{{this.selectedInvoice.status !== 'Pending' }}">Mark as Paid</button>
     </div>
   </div>
 

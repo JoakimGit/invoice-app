@@ -34,6 +34,7 @@ a {
 
 table {
   border-collapse: separate;
+  width: 100%;
 }
 
 .grey-txt {
@@ -120,6 +121,12 @@ label {
 }
 
 // BUTTONS
+
+button:disabled,
+button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
 
 .btn {
   border: none;

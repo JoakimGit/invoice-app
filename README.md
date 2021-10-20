@@ -1,27 +1,40 @@
-# InvoiceApp
+# Frontend Mentor - Fullstack Invoice app with color theme switcher
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+This is a solution to the [Invoice App with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). 
 
-## Development server
+### The challenge
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Users should be able to:
 
-## Code scaffolding
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete invoices
+- Receive form validations when trying to create/edit an invoice
+- Save draft invoices, and mark pending invoices as paid
+- Filter invoices by status (draft/pending/paid)
+- Toggle light and dark mode
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Screenshot
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![search-light](./assets/design/overview-web-dark.PNG)
+![search-light](./assets/design/invoice-slidein-web-dark.PNG)
+![search-light](./assets/design/details-web-light.PNG)
+![search-light](./assets/design/invoice-slidein-mobile-light.PNG)
 
-## Running unit tests
+### Links
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Live Site URL: [Live App](https://invoices-mentor.netlify.app/)
 
-## Running end-to-end tests
+### Built with
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- HTML5
+- SCSS
+- Flexbox & Grid
+- Mobile-first workflow
+- [Angular](https://angular.io/)
 
-## Further help
+### What I learned
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Have worked with Angular before, but this was my first time trying the BrowserAnimationModule to animate a slide-in-out component.
+Also got to make it fullstack by making use of a firebase realtime database to store data.
